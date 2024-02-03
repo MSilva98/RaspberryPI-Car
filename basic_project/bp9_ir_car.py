@@ -1,7 +1,7 @@
 import RPi.GPIO as GPIO
 import time
 
-PIN = 15;
+PIN = 15
 SCLK = 8
 DIO  = 9
 # Display pattern data

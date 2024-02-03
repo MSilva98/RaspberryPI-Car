@@ -22,15 +22,13 @@ def distance():
     while GPIO.input(GPIO_ECHO):
         pass
     t2 = time.time()
-    print("distance is %d " % (((t2 - t1)* 340 / 2) * 100))
     time.sleep(0.01)
     return ((t2 - t1)* 340 / 2) * 100
 
   
 if __name__ == '__main__':   #Program entry
     try:
-        while True: 
-            print("aaaa")
+        while True:
             dist = distance()  #
             print("Measured Distance = {:.2f} cm".format(dist)) #{:.2f},Keep two decimal places
             time.sleep(0.01)

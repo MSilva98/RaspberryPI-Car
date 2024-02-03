@@ -19,14 +19,14 @@ try:
     init()
     while True:
         servoPulse(servoPin1, 90)
-        '''
-        for i in range(0,180):
-            servoPulse(servoPin1, i)
+        
+        # for i in range(0,180):
+        #     servoPulse(servoPin1, i)
 
-        for i in range(0,180):
-            i = 180 - i
-            servoPulse(servoPin1, i)
-        '''
+        # for i in range(0,180):
+        #     i = 180 - i
+        #     servoPulse(servoPin1, i)
+        
 except KeyboardInterrupt:
     pass
 GPIO.cleanup()

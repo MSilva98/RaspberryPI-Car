@@ -49,37 +49,43 @@ GPIO.output(R_IN3,GPIO.LOW)
 GPIO.output(R_IN4,GPIO.LOW)
 
 
+freq = 1000
 #set pwm frequence to 1000hz
-pwm_R1 = GPIO.PWM(R_PWM1,100)
-pwm_R2 = GPIO.PWM(R_PWM2,100)
-pwm_L1 = GPIO.PWM(L_PWM1,100)
-pwm_L2 = GPIO.PWM(L_PWM2,100)
+pwm_FR = GPIO.PWM(R_PWM1, freq/10)
+pwm_BR = GPIO.PWM(R_PWM2, freq/10)
+pwm_FL = GPIO.PWM(L_PWM1, freq/10)
+pwm_BL = GPIO.PWM(L_PWM2, freq/10)
 
 #set inital duty cycle to 0
-pwm_R1.start(0)
-pwm_L1.start(0)
-pwm_R2.start(0)
-pwm_L2.start(0)
+pwm_FR.start(0)
+pwm_FL.start(0)
+pwm_BR.start(0)
+pwm_BL.start(0)
 
-while True:
-    GPIO.output(L_IN1,GPIO.LOW)  #Upper Left forward
-    GPIO.output(L_IN2,GPIO.HIGH)
-    pwm_L1.ChangeDutyCycle(50)
-    GPIO.output(L_IN3,GPIO.HIGH)  #Lower left forward
-    GPIO.output(L_IN4,GPIO.LOW)
-    pwm_L2.ChangeDutyCycle(50)
-    GPIO.output(R_IN1,GPIO.HIGH)  #Upper Right forward
-    GPIO.output(R_IN2,GPIO.LOW)
-    pwm_R1.ChangeDutyCycle(50)
-    GPIO.output(R_IN3,GPIO.LOW)  #Lower Right forward
-    GPIO.output(R_IN4,GPIO.HIGH)
-    pwm_R2.ChangeDutyCycle(50)
-    
-#stop pwm
-pwm_R1.stop()
-pwm_L1.stop()
-pwm_R2.stop()
-pwm_L2.stop()
-sleep(1)
+try:
+    while True:
+        GPIO.output(L_IN1,GPIO.LOW)  #Front Left forward
+        GPIO.output(L_IN2,GPIO.HIGH)
+        pwm_FL.ChangeDutyCycle(50)
+        GPIO.output(L_IN3,GPIO.HIGH)  #Back left forward
+        GPIO.output(L_IN4,GPIO.LOW)
+        pwm_BL.ChangeDutyCycle(50)
+        GPIO.output(R_IN1,GPIO.HIGH)  #Front Right forward
+        GPIO.output(R_IN2,GPIO.LOW)
+        pwm_FR.ChangeDutyCycle(50)
+        GPIO.output(R_IN3,GPIO.LOW)  #Back Right forward
+        GPIO.output(R_IN4,GPIO.HIGH)
+        pwm_BR.ChangeDutyCycle(50)
 
-GPIO.cleanup()  #release all GPIO
+except KeyboardInterrupt:
+    print("User interrupt keyboard")
+
+finally:
+    #stop pwm
+    pwm_FR.stop()
+    pwm_FL.stop()
+    pwm_BR.stop()
+    pwm_BL.stop()
+    time.sleep(1)
+
+    GPIO.cleanup()  #release all GPIO

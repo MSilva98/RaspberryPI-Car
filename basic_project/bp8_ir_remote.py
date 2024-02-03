@@ -1,7 +1,7 @@
 import RPi.GPIO as GPIO
 import time
 
-PIN = 15;
+PIN = 15
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(PIN,GPIO.IN,GPIO.PUD_UP)
