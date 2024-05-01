@@ -8,6 +8,7 @@ adafruit-circuitpython-typing==1.9.6
 Adafruit-GPIO==1.0.3
 Adafruit-PlatformDetect==3.57.0
 Adafruit-PureIO==1.1.11
+Adafruit-SSD1306==1.6.2
 pillow==10.2.0
-numpy-1.26.4 
-opencv-python-4.9.0.80
+numpy==1.26.4 
+opencv-python==4.9.0.80
